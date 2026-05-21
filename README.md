@@ -20,7 +20,7 @@ Build your empire, forge alliances, and conquer the realm in an immersive multip
 ## 🌐 Live Demo
 
 🔗 **Play Now:**  
-https://empirex.onrender.com
+https://empirex-sk.onrender.com
 
 ---
 
@@ -284,7 +284,7 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Developer
 
-### Shivam
+### Shivam Kumar
 GitHub: https://github.com/itshivam96
 
 ---
