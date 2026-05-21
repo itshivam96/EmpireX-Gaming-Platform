@@ -42,7 +42,7 @@ https://empirex.onrender.com
 
 <div align="center">
 
-<img src="img1.png" width="30%">
+
 <img src="img2.png" width="30%">
 <img src="img3.png" width="30%">
 <img src="img4.png" width="30%">
