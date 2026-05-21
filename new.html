@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Battle Channels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f4f4f9;
+        }
+
+        /* Container Styles */
+        .forum-container {
+            padding: 40px;
+            background: url('https://cdn.pixabay.com/photo/2023/03/09/07/57/fire-7839458_1280.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            color: #fafafa;
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            background-attachment: fixed;
+            
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .forum-heading {
+            text-align: center;
+            font-size: 2em;
+            font-family: 'Open Sans', sans-serif;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .region {
+            margin-bottom: 50px;
+        }
+
+        .region-title {
+            font-size: 1.3em;
+            font-family: 'Open Sans', sans-serif;
+            color: white;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.8);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+            animation: fadeInDown 1s ease-in-out;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .country {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease-in-out;
+        }
+
+        .country:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.03);
+        }
+
+        .country-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .country-flag {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .country-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .country-name {
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffeb3b;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .active-members {
+            font-size: 0.9em;
+            color: #e0e0e0;
+            margin-top: 8px;
+        }
+
+        .join-btn {
+            background: linear-gradient(45deg, #ff6f61, #d84315);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .join-btn:hover {
+            background: linear-gradient(45deg, #e64a19, #c62828);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .country {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .join-btn {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .country-flag {
+                width: 60px;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <!-- HTML Structure -->
+        <div class="forum-container">
+            <h2 class="forum-heading">Global Battle Channels</h2>
+
+            <!-- Region Section -->
+            <div class="region">
+                <h3 class="region-title">The Eastern Empire</h3>
+                <div class="country">
+                    <div class="country-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" class="country-flag">
+                        <div class="country-details">
+                            <span class="country-name">India</span>
+                            <span class="active-members">     <div id="chat-users-count">Loading...</div></span>
+                        </div>
+                    </div>
+                    <button class="join-btn">Join the Battle</button>
+                </div>
+                <div class="country">
+                    <div class="country-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" alt="Japan Flag" class="country-flag">
+                        <div class="country-details">
+                            <span class="country-name">Japan</span>
+                            <span class="active-members">Active Warriors: 15,758</span>
+                        </div>
+                    </div>
+                    <button class="join-btn">Join the Battle</button>
+                </div>
+            </div>
+        
+        
+            <script>
+                function updateChatUsersCount() {
+                    fetch('/chat_users')
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('chat-users-count').innerText = `${data.count} users online`;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching chat users count:', error);
+                            document.getElementById('chat-users-count').innerText = 'Error loading count';
+                        });
+                }
+        
+                // Update the user count every 10 seconds
+                updateChatUsersCount();
+                setInterval(updateChatUsersCount, 10000);
+            </script>
+
+            <!-- Another Region Section -->
+            <div class="region">
+                <h3 class="region-title">The Western Kingdom</h3>
+                <div class="country">
+                    <div class="country-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag" class="country-flag">
+                        <div class="country-details">
+                            <span class="country-name">Germany</span>
+                            <span class="active-members">Active Warriors: 9,952</span>
+                        </div>
+                    </div>
+                    <button class="join-btn">Join the Battle</button>
+                </div>
+                <div class="country">
+                    <div class="country-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="France Flag" class="country-flag">
+                        <div class="country-details">
+                            <span class="country-name">France</span>
+                            <span class="active-members">Active Warriors: 17,100</span>
+                        </div>
+                    </div>
+                    <button class="join-btn">Join the Battle</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript Functionality -->
+        <script>
+            document.querySelectorAll('.join-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const country = this.previousElementSibling.querySelector('.country-name').textContent;
+                    alert('You have pledged allegiance to ' + country + ' warriors!');
+                });
+            });
+        const connectedUsers = document.getElementById('connected-users');
+
+              // Emit event when the user connects
+        socket.emit('userConnected');
+
+        // Emit event when the user disconnects
+        window.addEventListener('beforeunload', () => {
+            socket.emit('userDisconnected');
+        });
+        </script>
+        <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    </section>
+</body>
+</html>
